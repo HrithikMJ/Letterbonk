@@ -5,8 +5,24 @@ feel free to report or fix bugs
 
 Pre-requisites:
 
-~Python 3.8 or later
+     ~Python 3.8 or later
 
-~Pygame module v-1.2(use command pip install pygames)
+     ~Pygame module v-1.2(use command pip install pygames)
 
-for more info visit https://pygame-zero.readthedocs.io/en/latest/installation.html
+      for more info visit https://pygame-zero.readthedocs.io/en/latest/installation.html
+
+
+
+Bugs:
+
+    ~You tell me
+
+Changelog:
+
+    ~0.1
+
+      -intial    
+
+    ~0.2(alpha)
+
+      -devolping and testing levels and difficulty
