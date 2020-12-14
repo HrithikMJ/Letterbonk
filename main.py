@@ -2,7 +2,7 @@ import pgzrun
 from random import choice,randint
 from string import ascii_letters
 WIDTH=800
-HEIGHT=600
+HEIGHT=700
 colour=(252, 161, 146)
 letter = {'a':'' , 'x':0 , 'y':20 }
 sc_letters=[]
