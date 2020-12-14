@@ -23,10 +23,12 @@ Bugs:
 
 Changelog:
 
+    for adding features kindly refer to https://pygame-zero.readthedocs.io/en/stable/builtins.html#built-in-objects , inform me and dont forget to update Changelog
+
     ~v0.1
 
       -intial   
-       
+
       -added bg music
 
     ~v0.2(alpha)
