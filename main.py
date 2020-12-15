@@ -1,6 +1,9 @@
 import pgzrun
+import sqlite3
 from random import choice,randint
 from string import ascii_letters
+conn = sqlite3.connect('score_1.db')
+c = conn.cursor()
 WIDTH=800
 HEIGHT=700
 letter = {'a':'' , 'x':0 , 'y':20 }
@@ -122,9 +125,15 @@ def on_key_down(unicode):
 
 
 randomiser()
+
 print("\033[91m"+"\033[1m" + "LOG:"  + "\033[0m")
 music.play('bgm')
 pgzrun.go()
+n=input("\033[1m" + "Enter your Username: "+ "\033[0m" )
+tot=(n,lvl,scoreg,scoreb)
+c.execute('INSERT INTO scores VALUES (?,?,?,?)', tot)
+conn.commit()
+conn.close()
 print("\n\n\n")
 print("\033[1m" + "\t\t\t------------------------" + "\033[0m" )
 print("\033[1m" + "\t\t\t         SCORE" + "\033[0m" )
@@ -132,5 +141,5 @@ print("\033[1m" + "\t\t\t------------------------" + "\033[0m" )
 print("\n\n")
 print("\033[91m"+"\033[1m" + "Wrong and missed Letters : " +str(scoreb)+ "\033[0m")
 print("\033[94m"+"\033[1m" + "Correct Letters          : " +str(scoreg)+ "\033[0m")
-print("\033[95m"+"\033[1m" + "\n\nCongratulations on reaching "+"\033[0m"+"\033[4m"+"\033[1m"+lvl+"\033[0m"  )
+print("\033[95m"+"\033[1m" + "\n\nCongratulations "+"\033[4m"+"\033[1m"+n+"\033[0m" +" on reaching "+"\033[0m"+"\033[4m"+"\033[1m"+lvl+"\033[0m"  )
 print("\033[95m"+"\033[1m" + "\n\tGG"+"\033[0m")

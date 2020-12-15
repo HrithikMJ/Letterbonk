@@ -46,7 +46,8 @@ Changelog:
      ~0.3(alpha)
 
       -new feature:
-        levels
-        (each level features a difeerent colour and velocity)
+        ~levels (each level features a difeerent colour and velocity)
+        ~added db and username (Your scores will now be saved forever ;))
+
 
       -working on adding a menu kinda thing  
