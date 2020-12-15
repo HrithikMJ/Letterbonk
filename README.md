@@ -9,7 +9,7 @@ Pre-requisites:
 
      ~Pygame module v-1.2(use command pip install pygames)
 
-      for more info cilck [here](https://pygame-zero.readthedocs.io/en/latest/installation.html)
+      for more info visit https://pygame-zero.readthedocs.io/en/latest/installation.html)
 
 
 
@@ -23,7 +23,7 @@ Bugs:
 
 Changelog:
 
-    for adding features kindly refer [here](https://pygame-zero.readthedocs.io/en/stable/builtins.html#built-in-objects) , inform me and dont forget to update Changelog
+    for adding features kindly refer https://pygame-zero.readthedocs.io/en/stable/builtins.html#built-in-objects , inform me and dont forget to update Changelog
 
     ~v0.1
 

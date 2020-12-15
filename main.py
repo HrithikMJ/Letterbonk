@@ -3,7 +3,7 @@ from random import choice,randint
 from string import ascii_letters
 WIDTH=800
 HEIGHT=700
-colour=(252, 161, 146)
+colour=(252 , 161, 146)
 letter = {'a':'' , 'x':0 , 'y':20 }
 sc_letters=[]
 scoreg=0
@@ -57,7 +57,6 @@ def leveler():
         i=1.1
         print('correct:',scoreg)
 
-
     elif scoreg>=30 and scoreg < 50:
         i=1.4
         print('correct:',scoreg)
@@ -94,12 +93,6 @@ def on_key_down(unicode):
           sounds.negative.play()
 
 
-def randomiser_color():
-  global j,colour1
-  j=0
-  while j==0:
-    colour1 = (randint(0,255),randint(0,255),randint(0,255))
-    j+=1
 
 
 randomiser()
