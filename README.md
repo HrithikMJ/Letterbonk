@@ -31,7 +31,7 @@ Changelog:
 
       -added bg music
 
-    ~v0.2(alpha)
+    ~v0.2
 
       -increased the HEIGHT of screen
 
@@ -42,3 +42,11 @@ Changelog:
       -added a scoreboard kinda to diplay final results in console
 
       -devolping and testing levels and difficulty
+
+     ~0.3(alpha)
+
+      -new feature:
+        levels
+        (each level features a difeerent colour and velocity)
+
+      -working on adding a menu kinda thing  
