@@ -102,13 +102,6 @@ def randomiser_color():
     j+=1
 
 
-def checker(): #this function is not called and needs correction
-    global i,j,colour1
-    if scoreg != 0 and scoreg%10==0:
-        i+=0.5
-
-
-
 randomiser()
 print("\033[91m"+"\033[1m" + "LOG:"  + "\033[0m")
 music.play('bgm')
