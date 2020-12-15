@@ -43,7 +43,7 @@ Changelog:
 
       -devolping and testing levels and difficulty
 
-     ~0.3(alpha)
+    ~0.3(alpha)
 
       -new feature:
         ~levels (each level features a difeerent colour and velocity)
