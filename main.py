@@ -66,7 +66,7 @@ def leveler():
     elif scoreg>=10 and scoreg<30:
         i=1.1
         colour=(154, 189, 245)
-        colour1=(13, 57, 128)
+        colour1=(13, 57, 128)                          #nice:))
         lvl="Silver Tier"
         print('correct:',scoreg)
 
