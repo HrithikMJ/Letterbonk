@@ -62,4 +62,6 @@ Changelog:
 
       -planning to add a menu item where you can DELETE or DISPLAY specific values using keywords
 
-       -(hotfix)fixed a bug where the highscores diplay in a random order(now they'll be displayed as highest score first)
+      -better error management
+
+      -(hotfix)fixed a bug where the highscores diplay in a random order(now they'll be displayed as highest score first)

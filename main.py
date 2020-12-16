@@ -1,7 +1,8 @@
 import pgzrun
 import sqlite3
-import time
+from time import sleep
 import csv
+import os
 from random import choice,randint
 from string import ascii_letters
 conn = sqlite3.connect('score_1.db')
@@ -12,6 +13,16 @@ letter = {'a':'' , 'x':0 , 'y':20 }
 sc_letters=[]
 scoreg=0
 scoreb=0
+
+def screen_clear():
+   # for mac and linux
+   if os.name == 'posix':
+      _ = os.system('clear')
+   else:
+      # for windows platfrom
+      _ = os.system('cls')
+
+
 
 def loadingsc():
    flag = 1
@@ -29,6 +40,7 @@ def menu():
     print("4. DELETE all HIGHSCORES")
     choice = int(input("Please enter your choice:"))
     print(" \n")
+    screen_clear()
 
     return choice
 
@@ -54,7 +66,7 @@ def csv_logger(r):
         csvwriter = csv.writer(csvfile)
         csvwriter.writerow(fields)
         csvwriter.writerow(r)
-
+#NICE:)))))
 
 
 def update():
@@ -66,7 +78,7 @@ def update():
       letter['y']+=i
       if  letter['y'] > HEIGHT :
         randomiser()
-        sc_letters.remove(letter)                                               #NICE:)))))
+        sc_letters.remove(letter)
         sounds.win.play()
         scoreb+=1
 
@@ -160,24 +172,37 @@ print("********************************************************************")
 while True:
     ch = menu()
     if ch == 1:
-        music.play('bgm')
-        pgzrun.go()
-        n=input("\033[1m" + "Enter your Username: "+ "\033[0m" )
-        tot=(n,lvl,scoreg,scoreb)
-        c.execute('INSERT INTO scores VALUES (?,?,?,?)', tot)
-        conn.commit()
+        try:
+         music.play('bgm')
+         pgzrun.go()
 
-        print("\n\n\n")
-        print("\033[1m" + "\t\t\t------------------------" + "\033[0m" )
-        print("\033[1m" + "\t\t\t         SCORE" + "\033[0m" )
-        print("\033[1m" + "\t\t\t------------------------" + "\033[0m" )
-        print("\n\n")
-        print("\033[91m"+"\033[1m" + "Wrong and missed Letters : " +str(scoreb)+ "\033[0m")
-        print("\033[94m"+"\033[1m" + "Correct Letters          : " +str(scoreg)+ "\033[0m")
-        print("\033[95m"+"\033[1m" + "\n\nCongratulations "+"\033[4m"+"\033[1m"+n+"\033[0m" +" on reaching "+"\033[0m"+"\033[4m"+"\033[1m"+lvl+"\033[0m"  )
-        print("\033[95m"+"\033[1m" + "\n\tGG"+"\033[0m")
-        conn.close()
-        break
+         n=input("\033[1m" + "Enter your Username: "+ "\033[0m" )
+         tot=(n,lvl,scoreg,scoreb)
+         print("\n\n\n")
+         print("\033[1m" + "\t\t\t------------------------" + "\033[0m" )
+         print("\033[1m" + "\t\t\t         SCORE" + "\033[0m" )
+         print("\033[1m" + "\t\t\t------------------------" + "\033[0m" )
+         print("\n")
+         print("\033[91m"+"\033[1m" + "Wrong and missed Letters : " +str(scoreb)+ "\033[0m")
+         print("\033[94m"+"\033[1m" + "Correct Letters          : " +str(scoreg)+ "\033[0m")
+         if lvl!="GG":
+            print("\033[95m"+"\033[1m" + "\n\nCongratulations "+"\033[4m"+"\033[1m"+n+"\033[0m" +" on reaching "+"\033[0m"+"\033[4m"+"\033[1m"+lvl+"\033[0m"  )
+            print("\033[95m"+"\033[1m" + "\n\tGG"+"\033[0m")
+         else:
+              print("\033[1m" + "TRY TYPING THE LETTERS AS THEY APPEAR ON SCREEN" + "\033[0m" )
+
+        except:
+            print("The game can only be played once try anyother options or Exit")
+
+
+
+        try:
+            c.execute('INSERT INTO scores VALUES (?,?,?,?)', tot)
+            conn.commit()
+
+        except:
+            print("Something went wrong,check whether the table exist")
+
 
     elif ch == 2:
         print("THE FOLLOWING WILL BE DISPLAYED IN ['name','tier','correct','wrong'] ")
@@ -186,6 +211,8 @@ while True:
 
     elif ch == 3:
         conn.close()
+        sleep(1)
+        screen_clear()
         break
 
     elif ch==4 :
@@ -194,10 +221,13 @@ while True:
             loadingsc()
             c.execute("DELETE FROM scores")
             conn.commit()
+            screen_clear()
             print("\033[91m"+"\033[1m" + "DONE!!"  + "\033[0m")
 
         else:
             conn.close()
+            sleep(5)
+            screen_clear()
             break
 
 
@@ -205,5 +235,4 @@ while True:
     else:
         print("\033[91m"+"\033[1m" + "INVALID INPUT"  + "\033[0m")
         print("Try again")
-        loadingsc
-        conn.close()
+        loadingsc()
