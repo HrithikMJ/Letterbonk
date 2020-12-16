@@ -50,13 +50,14 @@ def draw():
 
     screen.fill(colour)
     screen.draw.text(lvl,((WIDTH//2)-50,20),fontsize=50,color='white')
-    csv_logger(r)
+
     for letter in sc_letters:
          screen.draw.text(letter['a'],(letter['x'],letter['y']),fontname="mono",fontsize=50,color=colour1)
 
     screen.draw.text("Correct:"+str(scoreg),(WIDTH-80,0),fontsize=20,color=(1,1,1))
     screen.draw.text("Wrong:"+str(scoreb),(WIDTH-80,20),fontsize=20,color=(1,1,1))
     r=[i,scoreg,scoreb]
+    csv_logger(r)
 
 
 def csv_logger(r):
@@ -172,7 +173,7 @@ print("********************************************************************")
 while True:
     ch = menu()
     if ch == 1:
-        try:
+       try:
          music.play('bgm')
          pgzrun.go()
 
@@ -191,23 +192,25 @@ while True:
          else:
               print("\033[1m" + "TRY TYPING THE LETTERS AS THEY APPEAR ON SCREEN" + "\033[0m" )
 
-        except:
-            print("The game can only be played once try anyother options or Exit")
+       except :
+         print("Something went wrong :((( try anyother options or Exiting and start the game again")
 
 
 
 
-        try:
+
+       try:
             c.execute('INSERT INTO scores VALUES (?,?,?,?)', tot)
             conn.commit()
 
-        except:
+       except:
             print("Something went wrong,check whether the table exist")
 
 
     elif ch == 2:
         print("THE FOLLOWING WILL BE DISPLAYED IN ['name','tier','correct','wrong'] ")
         c.execute("SELECT * FROM scores ORDER BY correct DESC;")
+        sleep(1)
         print(c.fetchall())
 
     elif ch == 3:
