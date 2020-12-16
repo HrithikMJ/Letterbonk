@@ -52,7 +52,7 @@ Changelog:
 
       -working on adding a menu kinda thing  
 
-    ~v0.4  
+    ~v0.4 (testing)
 
       -new features:
          ~The menu is finally here ;) , you can now choose between 4 options
@@ -61,3 +61,5 @@ Changelog:
          ~the log has been moved to a csv(comma seperated values) file
 
       -planning to add a menu item where you can DELETE or DISPLAY specific values using keywords
+
+       -(hotfix)fixed a bug where the highscores diplay in a random order(now they'll be displayed as highest score first)

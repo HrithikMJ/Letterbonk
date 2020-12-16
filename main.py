@@ -180,7 +180,8 @@ while True:
         break
 
     elif ch == 2:
-        c.execute("SELECT * FROM scores ;")
+        print("THE FOLLOWING WILL BE DISPLAYED IN ['name','tier','correct','wrong'] ")
+        c.execute("SELECT * FROM scores ORDER BY correct DESC;")
         print(c.fetchall())
 
     elif ch == 3:
