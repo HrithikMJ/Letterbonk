@@ -28,7 +28,7 @@ def loadingsc():
    flag = 1
    while flag < 4:
     print("\rin" + ("." * flag), end=" ")
-    time.sleep(1)
+    sleep(1)
     flag = flag + 1
 
 def menu():
@@ -50,13 +50,13 @@ def draw():
 
     screen.fill(colour)
     screen.draw.text(lvl,((WIDTH//2)-50,20),fontsize=50,color='white')
+    csv_logger(r)
     for letter in sc_letters:
          screen.draw.text(letter['a'],(letter['x'],letter['y']),fontname="mono",fontsize=50,color=colour1)
 
     screen.draw.text("Correct:"+str(scoreg),(WIDTH-80,0),fontsize=20,color=(1,1,1))
     screen.draw.text("Wrong:"+str(scoreb),(WIDTH-80,20),fontsize=20,color=(1,1,1))
     r=[i,scoreg,scoreb]
-    csv_logger(r)
 
 
 def csv_logger(r):
@@ -93,11 +93,11 @@ def randomiser():
     letter['y'] = 20
     sc_letters.append(letter)
 
+
 def leveler():
     global scoreg,scoreb,temp_1,i,colour,colour1,lvl
     i=0
     lvl="GG"
-
     colour=(252 , 161, 146)
     colour1=(153, 47, 29)
 
@@ -196,6 +196,7 @@ while True:
 
 
 
+
         try:
             c.execute('INSERT INTO scores VALUES (?,?,?,?)', tot)
             conn.commit()
@@ -211,6 +212,7 @@ while True:
 
     elif ch == 3:
         conn.close()
+        print("\033[91m"+"\033[1m" + "CIAO!!"  + "\033[0m")
         sleep(1)
         screen_clear()
         break
