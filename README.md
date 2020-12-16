@@ -17,7 +17,7 @@ Bugs:
 
     ~'I' and 'l'  looks same (fixed in v0.2)
 
-    ~the numbers printing in the console is just for dev's refrence will be removed in future builds
+    ~the numbers printing in the console is just for dev's refrence will be removed in future builds(removed in v0.4)
 
     ~You tell me
 
@@ -43,11 +43,21 @@ Changelog:
 
       -devolping and testing levels and difficulty
 
-    ~0.3(alpha)
+    ~v0.3
 
-      -new feature:
+      -new features:
         ~levels (each level features a difeerent colour and velocity)
         ~added db and username (Your scores will now be saved forever ;))
 
 
       -working on adding a menu kinda thing  
+
+    ~v0.4  
+
+      -new features:
+         ~The menu is finally here ;) , you can now choose between 4 options
+         ~no more ugly printing of log in console
+         ~added cosmetics to previous console items
+         ~the log has been moved to a csv(comma seperated values) file
+
+      -planning to add a menu item where you can DELETE or DISPLAY specific values using keywords
