@@ -78,3 +78,5 @@ Changelog:
         -Even better error management (Feel free to report any bugs)
 
         -Even more cosmetics to the console part ;)
+
+        -Added comments 

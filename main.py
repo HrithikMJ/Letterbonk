@@ -1,12 +1,14 @@
-import pgzrun
-import sqlite3
-from time import sleep
-import csv
-import os
-from random import choice,randint
-from string import ascii_letters
+import pgzrun #pgzrun to play the game
+import sqlite3 #sqlite3 to manage database
+from time import sleep #sleep module for a better feel while using console
+import csv#to manage log
+import os # for getting os name in screen_clear()
+from random import choice,randint # to randomise values for more fun
+from string import ascii_letters# to get letter string
+#sql connection
 conn = sqlite3.connect('score_1.db')
 c = conn.cursor()
+#declaring variables
 WIDTH=800
 HEIGHT=700
 letter = {'a':'' , 'x':0 , 'y':20 }
@@ -14,25 +16,27 @@ sc_letters=[]
 scoreg=0
 scoreb=0
 name_list=[]
-def screen_clear():
+
+#to create tables if they dont EXISTS
+c.execute("CREATE TABLE IF NOT EXISTS names (names text NOT NULL PRIMARY KEY);")
+c.execute("CREATE TABLE IF NOT EXISTS scores (name text NOT NULL PRIMARY KEY, tier text, correct int, wrong int);")
+
+def screen_clear():  #to clear screen
    # for mac and linux
    if os.name == 'posix':
       _ = os.system('clear')
    else:
       # for windows platfrom
       _ = os.system('cls')
-c.execute("CREATE TABLE IF NOT EXISTS names (names text NOT NULL PRIMARY KEY);")
-c.execute("CREATE TABLE IF NOT EXISTS scores (name text NOT NULL PRIMARY KEY, tier text, correct int, wrong int);")
 
-
-def loadingsc():
+def loadingsc():#to make a minimalist loading screen
    flag = 1
    while flag < 4:
     print("\rin" + ("." * flag), end=" ")
     sleep(1)
     flag = flag + 1
 
-def menu():
+def menu():#The main menu
     print("********************************************************************")
     print("\033[96m"+"\033[1m"+"\t\t\tLetter Bonk   v0.5"+"\033[0m", flush=False)
     print("********************************************************************")
@@ -49,7 +53,7 @@ def menu():
 
     return choice
 
-def draw():
+def draw(): #draw function of pgzrun
     global scoreg,scoreb,i,colour,colour1,lvl
     leveler()
 
@@ -62,20 +66,21 @@ def draw():
     screen.draw.text("Correct:"+str(scoreg),(WIDTH-80,0),fontsize=20,color=(1,1,1))
     screen.draw.text("Wrong:"+str(scoreb),(WIDTH-80,20),fontsize=20,color=(1,1,1))
     r=[i,scoreg,scoreb]
+ #NICE:)))))
     csv_logger(r)
 
 
-def csv_logger(r):
+def csv_logger(r): #log
     filename = "log.csv"
     fields=['Velocity','correct','wrong']
     with open(filename, 'w') as csvfile:
         csvwriter = csv.writer(csvfile)
-        csvwriter.writerow(fields)                     #NICE:)))))
+        csvwriter.writerow(fields)
 
         csvwriter.writerow(r)
 
 
-def update():
+def update():#update function of pgzrun
     global scoreb,i,scoreg
     leveler()
     r=[i,scoreg,scoreb]
@@ -92,7 +97,7 @@ def update():
         randomiser()
 
 
-def randomiser():
+def randomiser():#to randomise values
     letter={}
     letter['a'] = choice(ascii_letters)
     letter['x'] = randint(10,WIDTH-30)
@@ -100,7 +105,7 @@ def randomiser():
     sc_letters.append(letter)
 
 
-def leveler():
+def leveler(): #to add levels
     global scoreg,scoreb,temp_1,i,colour,colour1,lvl
     i=0
     lvl="GG"
@@ -112,8 +117,6 @@ def leveler():
         colour=(252 , 161, 146)
         colour1=(153, 47, 29)
         lvl="Tin Tier"
-
-
 
     elif scoreg>=10 and scoreg<30:
         i=1.1
@@ -151,8 +154,10 @@ def leveler():
     else:
         i=1
 
-def username_checker(a):
-    if a== 1:
+def username_checker(a):#this function checks username and is divided into 2 parts
+
+    if a== 1:#part 1: this is to check whether a entered username is unique
+
         n=input("\033[1m" + "Enter your Username: "+ "\033[0m" )
         n.lower()
         c.execute("SELECT * FROM names" )
@@ -189,7 +194,7 @@ def username_checker(a):
             username_checker(1)
 
 
-    elif a== 2:
+    elif a== 2:#part2: to check whether a username exists
         print("THE FOLLOWING WILL BE DISPLAYED IN ['name','tier','correct','wrong'] ")
         c.execute("SELECT name FROM scores" )
         record = c.fetchall()
@@ -208,7 +213,8 @@ def username_checker(a):
              print("Try again")
              username_checker(2)
 
-def on_key_down(unicode):
+def on_key_down(unicode): #keydown function of pgzrun
+#this function detects key presses
     global scoreb,scoreg
 
     if unicode:
@@ -224,9 +230,10 @@ def on_key_down(unicode):
 
 
 
+#start of main function
 
 randomiser()
-
+#start of while loop
 while True:
     ch = menu()
     if ch == '1':
