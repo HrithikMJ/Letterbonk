@@ -13,7 +13,7 @@ letter = {'a':'' , 'x':0 , 'y':20 }
 sc_letters=[]
 scoreg=0
 scoreb=0
-
+name_list=[]
 def screen_clear():
    # for mac and linux
    if os.name == 'posix':
@@ -21,7 +21,8 @@ def screen_clear():
    else:
       # for windows platfrom
       _ = os.system('cls')
-
+c.execute("CREATE TABLE IF NOT EXISTS names (names text NOT NULL PRIMARY KEY);")
+c.execute("CREATE TABLE IF NOT EXISTS scores (name text NOT NULL PRIMARY KEY, tier text, correct int, wrong int);")
 
 
 def loadingsc():
@@ -32,13 +33,17 @@ def loadingsc():
     flag = flag + 1
 
 def menu():
+    print("********************************************************************")
+    print("\033[96m"+"\033[1m"+"\t\t\tLetter Bonk   v0.5"+"\033[0m", flush=False)
+    print("********************************************************************")
     print(" \n")
-    print("\tSelect one of the below options...UwU\n")
+    print("\tSelect one of the options below or press any other key to exit\n")
     print("1. Play")
     print("2. Display Highscores")
-    print("3. Exit Game")
+    print("3. DELETE specific value ")
     print("4. DELETE all HIGHSCORES")
-    choice = int(input("Please enter your choice:"))
+    print("5. DISPLAY specific value")
+    choice = input("Please enter your choice:")
     print(" \n")
     screen_clear()
 
@@ -65,9 +70,9 @@ def csv_logger(r):
     fields=['Velocity','correct','wrong']
     with open(filename, 'w') as csvfile:
         csvwriter = csv.writer(csvfile)
-        csvwriter.writerow(fields)
+        csvwriter.writerow(fields)                     #NICE:)))))
+
         csvwriter.writerow(r)
-#NICE:)))))
 
 
 def update():
@@ -146,8 +151,62 @@ def leveler():
     else:
         i=1
 
+def username_checker(a):
+    if a== 1:
+        n=input("\033[1m" + "Enter your Username: "+ "\033[0m" )
+        n.lower()
+        c.execute("SELECT * FROM names" )
+        record = c.fetchall()
+        try:
+           c.execute('INSERT INTO names VALUES (?)', (n,))
+           conn.commit()
+           tot=(n,lvl,scoreg,scoreb)
+           print("\n\n\n")
+           print("\033[1m" + "\t\t\t------------------------" + "\033[0m" )
+           print("\033[1m" + "\t\t\t         SCORE" + "\033[0m" )
+           print("\033[1m" + "\t\t\t------------------------" + "\033[0m" )
+           print("\n")
+           print("\033[91m"+"\033[1m" + "Wrong and missed Letters : " +str(scoreb)+ "\033[0m")
+           print("\033[94m"+"\033[1m" + "Correct Letters          : " +str(scoreg)+ "\033[0m")
+           if lvl!="GG":
+              print("\033[95m"+"\033[1m" + "\n\nCongratulations "+"\033[4m"+"\033[1m"+n+"\033[0m" +" on reaching "+"\033[0m"+"\033[4m"+"\033[1m"+lvl+"\033[0m"  )
+              print("\033[95m"+"\033[1m" + "\n\tGG"+"\033[0m")
+           else:
+                print("\033[1m" + "TRY TYPING THE LETTERS AS THEY APPEAR ON SCREEN" + "\033[0m" )
+
+           try:
+                 c.execute('INSERT INTO scores VALUES (?,?,?,?)', tot)
+                 conn.commit()
+
+           except:
+                 print("Something went wrong:(())")
 
 
+
+        except:
+            print("\033[91m"+"\033[1m" + "Username alredy exist"  + "\033[0m")
+            print("Try again")
+            username_checker(1)
+
+
+    elif a== 2:
+        print("THE FOLLOWING WILL BE DISPLAYED IN ['name','tier','correct','wrong'] ")
+        c.execute("SELECT name FROM scores" )
+        record = c.fetchall()
+        name_view=input("Enter username of player to be viewed : ")
+        name_view.lower()
+
+        if name_view in record:
+            c.execute("SELECT * FROM scores WHERE name=?;", (name_view,) )
+            print(c.fetchall())
+            sleep(2)
+            print("\n\n")
+            print("\033[91m"+"\033[1m" + "DONE!!"  + "\033[0m")
+
+        else:
+             print("\033[91m"+"\033[1m" + "Username doesnt exist"  + "\033[0m")
+             print("Try again")
+             username_checker(2)
 
 def on_key_down(unicode):
     global scoreb,scoreg
@@ -167,64 +226,51 @@ def on_key_down(unicode):
 
 
 randomiser()
-print("********************************************************************")
-print("\t\t\tLetter Bonk", flush=False)
-print("********************************************************************")
+
 while True:
     ch = menu()
-    if ch == 1:
+    if ch == '1':
        try:
          music.play('bgm')
          pgzrun.go()
-
-         n=input("\033[1m" + "Enter your Username: "+ "\033[0m" )
-         tot=(n,lvl,scoreg,scoreb)
-         print("\n\n\n")
-         print("\033[1m" + "\t\t\t------------------------" + "\033[0m" )
-         print("\033[1m" + "\t\t\t         SCORE" + "\033[0m" )
-         print("\033[1m" + "\t\t\t------------------------" + "\033[0m" )
-         print("\n")
-         print("\033[91m"+"\033[1m" + "Wrong and missed Letters : " +str(scoreb)+ "\033[0m")
-         print("\033[94m"+"\033[1m" + "Correct Letters          : " +str(scoreg)+ "\033[0m")
-         if lvl!="GG":
-            print("\033[95m"+"\033[1m" + "\n\nCongratulations "+"\033[4m"+"\033[1m"+n+"\033[0m" +" on reaching "+"\033[0m"+"\033[4m"+"\033[1m"+lvl+"\033[0m"  )
-            print("\033[95m"+"\033[1m" + "\n\tGG"+"\033[0m")
-         else:
-              print("\033[1m" + "TRY TYPING THE LETTERS AS THEY APPEAR ON SCREEN" + "\033[0m" )
+         username_checker(1)
 
        except :
-         print("Something went wrong :((( try anyother options or Exiting and start the game again")
+            print("Something went wrong :((( try anyother options or Exiting and start the game again")
 
-
-
-
-
-       try:
-            c.execute('INSERT INTO scores VALUES (?,?,?,?)', tot)
-            conn.commit()
-
-       except:
-            print("Something went wrong,check whether the table exist")
-
-
-    elif ch == 2:
+    elif ch == '2':
         print("THE FOLLOWING WILL BE DISPLAYED IN ['name','tier','correct','wrong'] ")
         c.execute("SELECT * FROM scores ORDER BY correct DESC;")
         sleep(1)
         print(c.fetchall())
 
-    elif ch == 3:
-        conn.close()
-        print("\033[91m"+"\033[1m" + "CIAO!!"  + "\033[0m")
-        sleep(1)
-        screen_clear()
-        break
+    elif ch == '3':
 
-    elif ch==4 :
+        c.execute("SELECT * FROM scores ;")
+        print(c.fetchall())
+        name_del=input("Enter name to be deleted : ")
+        name_del.lower()
+        k=input("\033[91m"+"\033[1m" + "ARE YOU SURE?........type 'YeS' to confirm or press anyother key to quit "  + "\033[0m")
+        if k=='YeS':
+            loadingsc()
+            c.execute("DELETE FROM scores WHERE name=?", (name_del,))
+            c.execute("DELETE FROM names WHERE names=?", (name_del,))
+        else:
+            sleep(3)
+            screen_clear()
+
+    elif ch== '5' :
+
+            username_checker(2)
+
+
+
+    elif ch== '4' :
         k=input("\033[91m"+"\033[1m" + "ARE YOU SURE?........type 'YeS' to confirm "  + "\033[0m")
         if k=='YeS':
             loadingsc()
             c.execute("DELETE FROM scores")
+            c.execute("DELETE FROM names")
             conn.commit()
             screen_clear()
             print("\033[91m"+"\033[1m" + "DONE!!"  + "\033[0m")
@@ -235,9 +281,10 @@ while True:
             screen_clear()
             break
 
-
-
     else:
-        print("\033[91m"+"\033[1m" + "INVALID INPUT"  + "\033[0m")
-        print("Try again")
-        loadingsc()
+
+       conn.close()
+       print("\033[91m"+"\033[1m" + "CIAO!!"  + "\033[0m")
+       sleep(2)
+       screen_clear()
+       break

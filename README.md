@@ -52,7 +52,7 @@ Changelog:
 
       -working on adding a menu kinda thing  
 
-    ~v0.4 (testing)
+    ~v0.4
 
       -new features:
          ~The menu is finally here ;) , you can now choose between 4 options
@@ -64,4 +64,17 @@ Changelog:
 
       -better error management
 
-      -(hotfix)fixed a bug where the highscores diplay in a random order(now they'll be displayed as highest score first)
+    ~v0.4.1
+
+       -(hotfix)fixed a bug where the highscores diplay in a random order(now they'll be displayed as highest score first)
+
+
+    ~v0.5
+
+        -Added menu item where you can DELETE or DIPLAY specific values using username
+
+        -USERNAME is made PRIMARYKEY i.e, USERNAME should be unique and not null value
+
+        -Even better error management (Feel free to report any bugs)
+
+        -Even more cosmetics to the console part ;)
