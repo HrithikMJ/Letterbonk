@@ -15,10 +15,6 @@ Pre-requisites:
 
 Bugs:
 
-    ~'I' and 'l'  looks same (fixed in v0.2)
-
-    ~the numbers printing in the console is just for dev's refrence will be removed in future builds(removed in v0.4)
-
     ~You tell me
 
 Changelog:
@@ -79,4 +75,4 @@ Changelog:
 
         -Even more cosmetics to the console part ;)
 
-        -Added comments 
+        -Added comments
