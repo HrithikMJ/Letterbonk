@@ -5,6 +5,7 @@ import csv#to manage log
 import os # for getting os name in screen_clear()
 from random import choice,randint # to randomise values for more fun
 from string import ascii_letters# to get letter string
+import pygame
 #sql connection
 conn = sqlite3.connect('score_1.db')
 c = conn.cursor()
@@ -56,6 +57,10 @@ def menu():#The main menu
 def draw(): #draw function of pgzrun
     global scoreg,scoreb,i,colour,colour1,lvl
     leveler()
+    pygame.mixer.init()
+    if not music.is_playing('bgm') :
+         music.play('bgm')
+
 
     screen.fill(colour)
     screen.draw.text(lvl,((WIDTH//2)-50,20),fontsize=50,color='white')
@@ -237,13 +242,11 @@ randomiser()
 while True:
     ch = menu()
     if ch == '1':
-       try:
-         music.play('bgm')
+
          pgzrun.go()
          username_checker(1)
 
-       except :
-            print("Something went wrong :((( try anyother options or Exiting and start the game again")
+
 
     elif ch == '2':
         print("THE FOLLOWING WILL BE DISPLAYED IN ['name','tier','correct','wrong'] ")

@@ -76,3 +76,8 @@ Changelog:
         -Even more cosmetics to the console part ;)
 
         -Added comments
+
+
+    ~v0.6
+
+       -The game can now be played infinitely   
