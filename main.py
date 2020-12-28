@@ -39,7 +39,7 @@ def loadingsc():#to make a minimalist loading screen
 
 def menu():#The main menu
     print("********************************************************************")
-    print("\033[96m"+"\033[1m"+"\t\t\tLetter Bonk   v0.5"+"\033[0m", flush=False)
+    print("\033[96m"+"\033[1m"+"\t\t\tLetter Bonk   v0.6"+"\033[0m", flush=False)
     print("********************************************************************")
     print(" \n")
     print("\tSelect one of the options below or press any other key to exit\n")
