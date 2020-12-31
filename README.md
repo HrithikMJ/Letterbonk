@@ -2,7 +2,7 @@
 My second project on github <3
 feel free to report or fix bugs
 
-![alt text](https://github.com/HrithikMJ/Letterbonk/tree/main/images/tenor.gif?raw=true)
+![alt text](https://github.com/HrithikMJ/Letterbonk/tree/main/images/tenor.png?raw=true)
 
 
 Pre-requisites:
