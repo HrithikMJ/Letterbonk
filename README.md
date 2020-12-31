@@ -2,7 +2,7 @@
 My second project on github <3
 feel free to report or fix bugs
 
-![alt text](https://github.com/HrithikMJ/Letterbonk/tree/main/images/heart.png?raw=true)
+![alt text](https://github.com/HrithikMJ/uforun69/blob/main/images/heart1.png?raw=true)
 
 
 Pre-requisites:
