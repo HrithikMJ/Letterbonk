@@ -268,9 +268,9 @@ while True:
             sleep(3)
             screen_clear()
 
-    '''elif ch== '5' :
+    #elif ch== '5' :
 
-            username_checker(2)'''
+            #username_checker(2)
 
 
 
