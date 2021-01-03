@@ -17,7 +17,7 @@ sc_letters=[]
 scoreg=0
 scoreb=0
 name_list=[]
-
+TITLE='Letter bonk'
 #to create tables if they dont EXISTS
 c.execute("CREATE TABLE IF NOT EXISTS names (names text NOT NULL PRIMARY KEY);")
 c.execute("CREATE TABLE IF NOT EXISTS scores (name text NOT NULL PRIMARY KEY, tier text, correct int, wrong int);")
