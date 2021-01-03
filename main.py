@@ -47,7 +47,6 @@ def menu():#The main menu
     print("2. Display Highscores")
     print("3. DELETE specific value ")
     print("4. DELETE all HIGHSCORES")
-    print("5. DISPLAY specific value")
     choice = input("Please enter your choice:")
     print(" \n")
     screen_clear()

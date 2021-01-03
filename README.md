@@ -82,4 +82,11 @@ Changelog:
 
     ~v0.6
 
-       -The game can now be played infinitely   
+       -The game can now be played infinitely
+
+
+    ~v0.7
+
+       -removed the menu item through which specific values can be displayed. (the code still remains , i may correct it in future builds :') )
+
+       
